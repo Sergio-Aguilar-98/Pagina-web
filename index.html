@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contador de alimentos</title>
+</head>
+<body>
+
+<h1>Contador de alimentos</h1>
+
+<form action="index.php" method="post">
+  <input type="text" name="alimento" placeholder="Alimento">
+  <input type="number" name="gramos" placeholder="Gramos">
+  <input type="submit" value="Agregar">
+</form>
+
+<ul>
+  <li>Alimento | Gramos</li>
+  <li>----- | -----</li>
+</ul>
+
+<script>
+function agregarAlimento() {
+  var alimento = document.getElementById("alimento").value;
+  var gramos = document.getElementById("gramos").value;
+
+  var li = document.createElement("li");
+  li.innerHTML = alimento + " | " + gramos;
+
+  document.querySelector("ul").appendChild(li);
+
+  var total = 0;
+  for (var i = 0; i < document.querySelector("ul").children.length; i++) {
+    var li = document.querySelector("ul").children[i];
+    var gramos = parseInt(li.textContent.split("|")[1]);
+    total += gramos;
+  }
+
+  document.querySelector("ul").innerHTML += "<li>Total: " + total + " gramos</li>";
+}
+</script>
+
+</body>
+</html>
